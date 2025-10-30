@@ -2,7 +2,7 @@
 
 ----------
 
-## A messagin web app that allows users to message each other, either in a 1-on-1 conversaion, or in a groupchat
+## A messaging web app that allows users to message each other, either in a 1-on-1 conversaion, or in a groupchat
 
 ----------
 
