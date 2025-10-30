@@ -1,0 +1,86 @@
+#chatWrapper {
+    height: 80%;
+}
+
+#chatMessagesWrapper {
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    height: 100%;
+    width: 100%;
+}
+
+.chatMessages {
+    display: grid;
+    grid-template-columns: repeat(2, 0.5fr);
+    grid-auto-rows: auto;
+}
+
+.currentUserMessage {
+    grid-column: 2;
+}
+
+.otherUserMessage {
+    grid-column: 1;
+}
+
+.currentUserMessage,
+.otherUserMessage {
+    padding: 0.75rem;
+    margin: 0.25rem;
+    background-color: #DCC5B2;
+    border-radius: 6px;
+
+}
+
+.messageCreationTime {
+
+}
+
+.messageCreationTime,
+.messageUsername {
+    text-align: right;
+    text-decoration: underline;
+}
+
+.messageUsername {
+
+}
+
+.messageContent {
+    overflow-wrap: anywhere;
+    white-space: normal;
+    margin-top: 0.25rem;
+    
+}
+
+#sendMessageFormWrapper {
+    height: 100%;
+}
+
+#sendMessageForm {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 10%;
+}
+
+#sendMessageInput {
+    height: 60%;
+    width: 80%;
+    border-radius: 6px;
+    border: none;
+    padding: 0 1rem;
+    font-size: large;
+}
+
+#sendMessageButton {
+    width: 10%;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+#sendMessageButton:hover {
+    background-color: #DCC5B2;
+}

@@ -1,0 +1,62 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+
+// -- Self-Note -- \\
+
+// [] = the "1" part of relations "1-m" for example
+// @relation() = the "many" part of relation "many-1" for example
+
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("SUPABASE_DATABASE_URL")
+  directUrl = env("SUPABASE_DIRECT_URL")
+}
+
+model users { // all the users
+  id String @id @default(uuid())
+  username String @unique
+  password String
+
+  chats chat_users[] // links each user to each of the chats that they are in
+  messages messages[] // all the messages from a user
+}
+
+model chats { // all the chats
+  id String @id @default(uuid())
+  name String @default(uuid())
+  created_at DateTime @default(now())
+
+  users chat_users[] // links each chat with a group of users
+  messages messages[] // all the messages in each chat
+}
+
+model messages {  
+  id String @id @default(uuid())
+  message_content String
+  creation_time DateTime @default(now())
+  username String 
+  chatId String
+  userId String
+
+  chat chats @relation(fields: [chatId], references: [id], onDelete: Cascade) // this is fk the chat messages
+  user users @relation(fields: [userId], references: [id], onDelete: Cascade) //  this is fk for user messages
+}
+
+model chat_users { // links what users are in what chat
+  id String @id @default(uuid())
+  userId String
+  chatId String
+
+  user users @relation(fields: [userId], references: [id], onDelete: Cascade) // this is fk for each chat that each user is in
+  chat chats @relation(fields: [chatId], references: [id], onDelete: Cascade) // this is fk for each user and each chat they are in
+}
